@@ -1,0 +1,21 @@
+# Maintainer: openOODA-tools <ops@openooda.org>
+pkgname=ooxml-bin
+_pkgname=ooxml
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Streaming XML parser with XPath evaluation and JSON Lines stream conversion."
+arch=('x86_64')
+url="https://github.com/openOODA-tools/ooxml"
+license=('Apache-2.0')
+depends=('glibc')
+provides=('ooxml')
+conflicts=('ooxml')
+source_x86_64=("${url}/releases/download/v${pkgver}/ooxml-linux-x86_64"
+               "uninstall.sh::https://raw.githubusercontent.com/openOODA-tools/${_pkgname}/v${pkgver}/uninstall.sh")
+sha256sums_x86_64=('SKIP'
+                   'SKIP')
+
+package() {
+    install -Dm755 "${srcdir}/ooxml-linux-x86_64" "${pkgdir}/usr/bin/ooxml"
+    install -Dm755 uninstall.sh "${pkgdir}/usr/bin/ooxml-uninstall"
+}
